@@ -15,6 +15,10 @@
     "phpro/grumphp": "^1.3.0"
   },
   "config": {
-    "bin-dir": "bin/"
+    "bin-dir": "bin/",
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "phpro/grumphp": true
+    }
   }
 }
