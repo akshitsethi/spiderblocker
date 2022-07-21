@@ -949,6 +949,33 @@ class SpiderBlocker {
 	}
 
 	/**
+	 * Does nothing and is purely for the purpose of testing code coverage issues via CodeClimate.
+	 *
+	 * @return array
+	 */
+	public function do_nothing_one(): array {
+		return array();
+	}
+
+	/**
+	 * Does nothing and is purely for the purpose of testing code coverage issues via CodeClimate.
+	 *
+	 * @return void
+	 */
+	public function do_nothing_two(): string {
+		return 'Regular string';
+	}
+
+	/**
+	 * Does nothing and is purely for the purpose of testing code coverage issues via CodeClimate.
+	 *
+	 * @return void
+	 */
+	public function do_nothing_three(): bool {
+		return false;
+	}
+
+	/**
 	 * Deactivates the plugin.
 	 */
 	protected function deactivate_plugin() {
