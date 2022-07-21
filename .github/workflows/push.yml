@@ -5,6 +5,8 @@ jobs:
   onMasterOrPR:
     name: On master or PR
     runs-on: ubuntu-latest
+    env:
+      CC_TEST_REPORTER_ID: 7782ee3f39b625dfd05385de4697784f218e54650cb50a6d94882fdc3f0bfd79
     steps:
     - name: Checkout code
       uses: actions/checkout@master
@@ -12,11 +14,19 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: '7.4'
+        coverage: xdebug
     - name: Install Dependencies
       run: make ensure
     - name: Lint
       run: make fmt
+    - name: Setup Code Climate Test Runner
+      run: |
+        curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+        chmod +x ./cc-test-reporter
     - name: Tests
-      run: make test
+      run: |
+        ./cc-test-reporter before-build
+        make test
+        ./cc-test-reporter after-build --coverage-input-type clover --exit-code $?
     - name: Cover
       run: make cover
